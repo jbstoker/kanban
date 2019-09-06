@@ -320,7 +320,9 @@ var KanbanBoard = function () {
    }, {
       key: 'mouseUp',
       value: function mouseUp() {
-         this.heldCard.drop();
+         if(this.heldCard) {
+           this.heldCard.drop()
+         }
          this.ghost.hide();
          this.heldCard = undefined;
       }
