@@ -435,7 +435,12 @@ var KanbanCard = function () {
    }, {
       key: 'drop',
       value: function drop() {
-         this.html.classList.remove('held');
+         var token = document.getElementsByName('csrf-token')[0].getAttribute('content')
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", route('core.boards.setcard'), true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({'_token':token, 'data':this}));
+          this.html.classList.remove('held');
       }
 
       /**
